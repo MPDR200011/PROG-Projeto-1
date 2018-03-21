@@ -23,9 +23,13 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="wordUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="29765-8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="wordUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

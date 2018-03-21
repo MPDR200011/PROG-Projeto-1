@@ -18,8 +18,16 @@
     <ClCompile Include="procdic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wordUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="29765-8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="wordUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

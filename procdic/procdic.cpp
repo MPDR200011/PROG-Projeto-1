@@ -85,7 +85,8 @@ int main() {
 	}
 
 	//Word counting fase
-	cout << "beginning with letter ...";	for (int i = 0; i < 26; i++) {
+	cout << "beginning with letter ...";
+	for (int i = 0; i < 26; i++) {
 		cout << endl << (char) (65 + i) << endl;
 		int wordCount = 0;
 		for (string word : wordVectors.at(i)) {

@@ -1,29 +1,128 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <algorithm>
+#include <set>
 #include "wordUtils.h"
 
 using namespace std;
 
-vector<string> finalVector;
-vector<vector<string>> wordVectors; //vetor com vetor para cada letra inicial
+vector<string> finalVector; //vetor com todas as palavras
+vector<vector<string>> wordVectors = vector<vector<string>>(26); //vetor com vetores para cada letra inicial
 
 int main() {
 	string line;
+	string inFileName, outFileName;
+	bool inputFail = false;
 
-	getline(cin, line);
+	ifstream fileInput;
+	ofstream fileOutput;
 
-	cout << line << endl;
-
-	vector<string> words = processLine(line);
-
-	if (isLineValid(line)) {
-		for (string s : processLine(line)) {
-			cout << s << endl;
+	//Input file request
+	cout << "Dictionary file ? ";
+	do {
+		getline(cin, inFileName);
+		if (cin.fail()) {
+			inputFail = true;
+			cout << "Invalid input, try again." << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+		} else {
+			fileInput.open(inFileName);
+			if (fileInput.is_open()) {
+				inputFail = false;
+			} else {
+				inputFail = true;
+				cout << "File not found, try again." << endl;
+			}
 		}
+
+	} while (inputFail);
+
+	//Output file request
+	cout << "Word list file  ? ";
+	do {
+		inputFail = false;
+		getline(cin, outFileName);
+		if (cin.fail()) {
+			inputFail = true;
+			cout << "Invalid input, try again." << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+		} else {
+			fileOutput.open(outFileName);
+			if (fileOutput.is_open()) {
+				inputFail = false;
+			} else {
+				inputFail = true;
+				cout << "Something went wrong, try again." << endl;
+			}
+		}
+	} while (inputFail);
+
+	//Word extraction fase
+	cout << endl << "Extracting simple words from file " << inFileName << ",\n";
+	if (fileInput.is_open()) {
+		
+		while (getline(fileInput, line)) {
+
+			if (isLineValid(line)) {
+
+				for (string word : splitLine(line, ';')) {
+
+					if (isSingleWord(word)) {
+
+						wordVectors.at(word.at(0) - 65).push_back(word);
+					}
+				}
+			}
+		}
+
+		fileInput.close();
 	} else {
-		cout << "invalid line" << endl;
+		cout << "file not found" << endl;
 	}
+
+	//Word counting fase
+	cout << "beginning with letter ...";	for (int i = 0; i < 26; i++) {
+		cout << endl << (char) (65 + i) << endl;
+		int wordCount = 0;
+		for (string word : wordVectors.at(i)) {
+			++wordCount;
+			finalVector.push_back(word);
+			if (wordCount % 100 == 0) {
+				cout << ".";
+			}
+		}
+	}
+
+	cout << endl << "Number of simple words = " << finalVector.size() << endl;
+
+	//Sorting fase
+	cout << "Sorting words ...\n";
+	sort(finalVector.begin(), finalVector.end());
+
+	//Duplicate removing fase
+	cout << "Removing duplicate words ...\n";
+	set<string> s;
+	unsigned size = finalVector.size();
+	for (size_t i = 0; i < size; i++) {
+		s.insert(finalVector.at(i));
+	}
+	finalVector.assign(s.begin(), s.end());
+
+	cout << "Number of non-duplicate simple words = " << finalVector.size() << endl;
+
+	//Saving fase
+	cout << "Saving words into file " << outFileName << " ...\n";
+	if (fileOutput.is_open()) {
+		for (string word : finalVector) {
+			fileOutput << word << endl;
+		}
+	}
+
+	cout << "End of processing." << endl;
 
 	return 0;
 }

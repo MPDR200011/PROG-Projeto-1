@@ -25,7 +25,7 @@ int main() {
 		getline(cin, inFileName);
 		if (cin.fail()) {
 			inputFail = true;
-			cout << "Invalid input, try again." << endl;
+			cout << "Invalid input, try again.\n";
 			cin.clear();
 			cin.ignore(10000, '\n');
 		} else {
@@ -34,7 +34,7 @@ int main() {
 				inputFail = false;
 			} else {
 				inputFail = true;
-				cout << "File not found, try again." << endl;
+				cout << "File not found, try again.\n";
 			}
 		}
 
@@ -47,7 +47,7 @@ int main() {
 		getline(cin, outFileName);
 		if (cin.fail()) {
 			inputFail = true;
-			cout << "Invalid input, try again." << endl;
+			cout << "Invalid input, try again.\n";
 			cin.clear();
 			cin.ignore(10000, '\n');
 		} else {
@@ -56,13 +56,13 @@ int main() {
 				inputFail = false;
 			} else {
 				inputFail = true;
-				cout << "Something went wrong, try again." << endl;
+				cout << "Something went wrong, try again.\n";
 			}
 		}
 	} while (inputFail);
 
 	//Word extraction fase
-	cout << endl << "Extracting simple words from file " << inFileName << ",\n";
+	cout << "\nExtracting simple words from file " << inFileName << ",\n";
 	if (fileInput.is_open()) {
 		
 		while (getline(fileInput, line)) {
@@ -81,13 +81,13 @@ int main() {
 
 		fileInput.close();
 	} else {
-		cout << "file not found" << endl;
+		cout << "file not found\n";
 	}
 
 	//Word counting fase
 	cout << "beginning with letter ...";
 	for (int i = 0; i < 26; i++) {
-		cout << endl << (char) (65 + i) << endl;
+		cout << "\n" << (char) (65 + i) << "\n";
 		int wordCount = 0;
 		for (string word : wordVectors.at(i)) {
 			++wordCount;
@@ -98,7 +98,7 @@ int main() {
 		}
 	}
 
-	cout << endl << "Number of simple words = " << finalVector.size() << endl;
+	cout << "\nNumber of simple words = " << finalVector.size() << "\n";
 
 	//Sorting fase
 	cout << "Sorting words ...\n";
@@ -106,24 +106,19 @@ int main() {
 
 	//Duplicate removing fase
 	cout << "Removing duplicate words ...\n";
-	set<string> s;
-	unsigned size = finalVector.size();
-	for (size_t i = 0; i < size; i++) {
-		s.insert(finalVector.at(i));
-	}
-	finalVector.assign(s.begin(), s.end());
+	finalVector.erase(unique(finalVector.begin(), finalVector.end()), finalVector.end());
 
-	cout << "Number of non-duplicate simple words = " << finalVector.size() << endl;
+	cout << "Number of non-duplicate simple words = " << finalVector.size() << "\n";
 
 	//Saving fase
 	cout << "Saving words into file " << outFileName << " ...\n";
 	if (fileOutput.is_open()) {
 		for (string word : finalVector) {
-			fileOutput << word << endl;
+			fileOutput << word << "\n";
 		}
 	}
 
-	cout << "End of processing." << endl;
+	cout << "End of processing.\n";
 
 	return 0;
 }

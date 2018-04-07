@@ -66,13 +66,11 @@ struct CharSet {
 
 };
 
-int main(ifstream &input) {
-	ifstream fileStream;
-	fileStream.open("control.txt");
+int randomNLetters(ifstream &input) {
 
 	//Cria struct com um vetor de chars com frequencia proporcional 
 	//a frequencia com que aparecem na word list
-	CharSet cset(fileStream);
+	CharSet cset(input);
 	
 	//Pedido do tamanho do set de caracteres aleatorios
 	bool validInput = false;
@@ -121,13 +119,13 @@ int main(ifstream &input) {
 	//Fase de verificacao e veredito
 
 	//retorna ao inicio do ficheiro
-	fileStream.clear();
-	fileStream.seekg(0);
+	input.clear();
+	input.seekg(0);
 
 	string temp;
 	bool founWord = false;
 	cout << endl << "Checking..." << endl;
-	while (getline(fileStream, temp)) {
+	while (getline(input, temp)) {
 		if (!temp.compare(answer)) {
 			//Encontrou
 			cout << "Word is in word list!" << endl;
@@ -141,7 +139,11 @@ int main(ifstream &input) {
 		cout << "Word is not in world list!" << endl;
 	}
 
-	fileStream.close();
+	input.close();
+
+	//Esperar que utilizador queira fechar o jogo
+	cout << "Press Enter to continue." << endl;
+	getchar();
 
 	return 0;
 }

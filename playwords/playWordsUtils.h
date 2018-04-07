@@ -11,8 +11,9 @@ namespace pw {
 
 	template <class T>
 	void takeInput(T &var) {
-		//Funcao generica para receber input valido para qualquer 
-		//tipo de variavel, exceto strings
+		//Funcao generica para receber input validado  
+		//para qualquer tipo de variavel, exceto strings.
+		//Para strings recomenda-se usar readString()
 		bool validInput = false;
 		do {
 			validInput = false;
@@ -30,5 +31,7 @@ namespace pw {
 	}
 
 	bool isWordPartOfSet(std::string word, std::vector<char> set);
+
+	bool wildcardMatch(const char *str, const char *strWild);
 
 }

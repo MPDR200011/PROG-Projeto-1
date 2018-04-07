@@ -27,6 +27,7 @@
     <ClCompile Include="randomNLetters.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="router.h" />
     <ClInclude Include="playWordsUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -32,5 +32,8 @@
     <ClInclude Include="playWordsUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="router.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

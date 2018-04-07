@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="control.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="playWordsUtils.cpp" />
+    <ClCompile Include="randomNLetters.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="playWordsUtils.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{1765ae39-b38a-4f80-a6c8-3b426b6c9df7}</ProjectGuid>

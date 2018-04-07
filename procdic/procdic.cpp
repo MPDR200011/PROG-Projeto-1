@@ -9,7 +9,7 @@
 using namespace std;
 
 vector<string> finalVector; //vetor com todas as palavras
-vector<vector<string>> wordVectors = vector<vector<string>>(26); //vetor com vetores para cada letra inicial
+vector<string> wordVectors[26]; //lista com vetores para cada letra inicial
 
 int main() {
 	string line;
@@ -25,7 +25,7 @@ int main() {
 		getline(cin, inFileName);
 		if (cin.fail()) {
 			inputFail = true;
-			cout << "Invalid input, try again.\n";
+			cout << "Invalid input, try again." << endl;
 			cin.clear();
 			cin.ignore(10000, '\n');
 		} else {
@@ -34,7 +34,7 @@ int main() {
 				inputFail = false;
 			} else {
 				inputFail = true;
-				cout << "File not found, try again.\n";
+				cout << "File not found, try again." << endl;
 			}
 		}
 
@@ -47,7 +47,7 @@ int main() {
 		getline(cin, outFileName);
 		if (cin.fail()) {
 			inputFail = true;
-			cout << "Invalid input, try again.\n";
+			cout << "Invalid input, try again." << endl;
 			cin.clear();
 			cin.ignore(10000, '\n');
 		} else {
@@ -56,13 +56,13 @@ int main() {
 				inputFail = false;
 			} else {
 				inputFail = true;
-				cout << "Something went wrong, try again.\n";
+				cout << "Something went wrong, try again." << endl;
 			}
 		}
 	} while (inputFail);
 
 	//Word extraction fase
-	cout << "\nExtracting simple words from file " << inFileName << ",\n";
+	cout << endl << "Extracting simple words from file " << inFileName << "," << endl;
 	if (fileInput.is_open()) {
 		
 		while (getline(fileInput, line)) {
@@ -73,7 +73,7 @@ int main() {
 
 					if (isSingleWord(word)) {
 
-						wordVectors.at(word.at(0) - 65).push_back(word);
+						wordVectors[word.at(0) - 65].push_back(word);
 					}
 				}
 			}
@@ -81,15 +81,15 @@ int main() {
 
 		fileInput.close();
 	} else {
-		cout << "file not found\n";
+		cout << "file not found" << endl;
 	}
 
 	//Word counting fase
 	cout << "beginning with letter ...";
 	for (int i = 0; i < 26; i++) {
-		cout << "\n" << (char) (65 + i) << "\n";
+		cout << endl << (char) (65 + i) << endl;
 		int wordCount = 0;
-		for (string word : wordVectors.at(i)) {
+		for (string word : wordVectors[i]) {
 			++wordCount;
 			finalVector.push_back(word);
 			if (wordCount % 100 == 0) {
@@ -98,27 +98,29 @@ int main() {
 		}
 	}
 
-	cout << "\nNumber of simple words = " << finalVector.size() << "\n";
+	cout << endl << "Number of simple words = " << finalVector.size() << endl;
 
 	//Sorting fase
-	cout << "Sorting words ...\n";
+	cout << "Sorting words ..." << endl;
 	sort(finalVector.begin(), finalVector.end());
 
 	//Duplicate removing fase
-	cout << "Removing duplicate words ...\n";
+	cout << "Removing duplicate words ..." << endl;
 	finalVector.erase(unique(finalVector.begin(), finalVector.end()), finalVector.end());
 
-	cout << "Number of non-duplicate simple words = " << finalVector.size() << "\n";
+	cout << "Number of non-duplicate simple words = " << finalVector.size() << endl;
 
 	//Saving fase
-	cout << "Saving words into file " << outFileName << " ...\n";
+	cout << "Saving words into file " << outFileName << " ..." << endl;
 	if (fileOutput.is_open()) {
 		for (string word : finalVector) {
-			fileOutput << word << "\n";
+			fileOutput << word << endl;
 		}
+
+		fileOutput.close();
 	}
 
-	cout << "End of processing.\n";
+	cout << "End of processing." << endl;
 
 	return 0;
 }

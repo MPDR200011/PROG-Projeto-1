@@ -25,6 +25,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="playWordsUtils.cpp" />
     <ClCompile Include="randomNLetters.cpp" />
+    <ClCompile Include="searchWildCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="router.h" />

@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="procdic.cpp">
+    <ClCompile Include="wordUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wordUtils.cpp">
+    <ClCompile Include="procdic_stl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

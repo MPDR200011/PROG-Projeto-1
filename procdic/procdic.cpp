@@ -3,7 +3,6 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
-#include <set>
 #include "wordUtils.h"
 
 using namespace std;
@@ -83,6 +82,7 @@ int main() {
 	} else {
 		cout << "file not found" << endl;
 	}
+
 
 	//Word counting fase
 	cout << "beginning with letter ...";

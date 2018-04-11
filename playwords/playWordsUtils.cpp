@@ -77,3 +77,30 @@ bool pw::wildcardMatch(const char *str, const char *strWild) {
 	// Have a match? Only if both are at the end...
 	return !*str && !*strWild;
 }
+
+string pw::trim(string s) {
+	//remove o espaco branco no inicio e no fim da string
+	const auto sBegin = s.find_first_not_of(" \t\n\v\f\r");
+
+	if (sBegin == string::npos)
+		return "";//caso esteja vazia
+
+	const auto sEnd = s.find_last_not_of(" \t\n\v\f\r");
+	const auto range = sEnd - sBegin;
+
+	return s.substr(sBegin, range + 1);
+}
+
+string pw::makeUpper(string s) {
+	string temp;
+	for (char &c : s) {
+		temp.push_back(toupper(c));
+	}
+
+	return temp;
+}
+
+void pw::endGame() {
+	cout << endl << "Press Enter to finnish." << endl;
+	getchar();
+}

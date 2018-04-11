@@ -34,4 +34,10 @@ namespace pw {
 
 	bool wildcardMatch(const char *str, const char *strWild);
 
+	std::string trim(std::string s);
+
+	std::string makeUpper(std::string s);
+
+	void endGame();
+
 }

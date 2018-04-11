@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <time.h>
+#include "router.h"
 #include "playWordsUtils.h"
 
 using namespace std;
@@ -11,13 +12,13 @@ struct CharSet {
 	vector<char> finalCharVector;
 
 	CharSet(ifstream &input) {
-		string temp;
-
+		
 		for (unsigned int i : letterAmountsInFile) {
 			//Colocar todos os valores da array a 0
 			i = 0;
 		}
 
+		string temp;
 		while (getline(input, temp)) {
 			//Conta o numero de ocorrencias de cada letra no ficheiro
 			for (char c : temp) {
@@ -66,11 +67,11 @@ struct CharSet {
 
 };
 
-int randomNLetters(ifstream &input) {
+void randomNLetters(ifstream &wordListFile) {
 
 	//Cria struct com um vetor de chars com frequencia proporcional 
 	//a frequencia com que aparecem na word list
-	CharSet cset(input);
+	CharSet cset(wordListFile);
 	
 	//Pedido do tamanho do set de caracteres aleatorios
 	bool validInput = false;
@@ -95,17 +96,15 @@ int randomNLetters(ifstream &input) {
 		cout << c << " ";
 	}
 	cout << endl;
-	cout << "Input (can be lower case) ? ";
+	cout << "Input ? ";
 
 	//Pede a sugestao do jogador
 	bool validWord = false;
 	string answer;
 	do {
 		pw::readString(answer);
-
-		for (char &c : answer) {
-			c = toupper(c);
-		}
+		answer = pw::trim(answer);
+		answer = pw::makeUpper(answer);
 
 		validWord = pw::isWordPartOfSet(answer, randomCharSet);
 		
@@ -116,16 +115,18 @@ int randomNLetters(ifstream &input) {
 		}
 	} while (!validWord);
 
-	//Fase de verificacao e veredito
+	//////////////////////////////////
+	//Fase de verificacao e veredito//
+	//////////////////////////////////
 
-	//retorna ao inicio do ficheiro
-	input.clear();
-	input.seekg(0);
+	//Retorna ao inicio do ficheiro
+	wordListFile.clear();
+	wordListFile.seekg(0);
 
 	string temp;
 	bool founWord = false;
 	cout << endl << "Checking..." << endl;
-	while (getline(input, temp)) {
+	while (getline(wordListFile, temp)) {
 		if (!temp.compare(answer)) {
 			//Encontrou
 			cout << "Word is in word list!" << endl;
@@ -139,11 +140,8 @@ int randomNLetters(ifstream &input) {
 		cout << "Word is not in world list!" << endl;
 	}
 
-	input.close();
+	wordListFile.close();
 
-	//Esperar que utilizador queira fechar o jogo
-	cout << "Press Enter to continue." << endl;
-	getchar();
+	pw::endGame();
 
-	return 0;
 }

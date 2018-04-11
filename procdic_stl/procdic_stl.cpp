@@ -1,15 +1,12 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include <fstream>
-#include <algorithm>
 #include <set>
 #include "wordUtils.h"
 
 using namespace std;
-
-vector<string> finalVector; //vetor com todas as palavras
-vector<string> wordVectors[26]; //lista com vetores para cada letra inicial
+set<string> finalSet; //vetor com todas as palavras
+set<string> wordSets[26]; //lista com vetores para cada letra inicial
 
 int main() {
 	string line;
@@ -75,7 +72,7 @@ int main() {
 
 					if (isSingleWord(word)) {
 
-						wordVectors[word.at(0) - 65].push_back(word);
+						wordSets[word.at(0) - 65].insert(word);
 					}
 				}
 			}
@@ -91,35 +88,21 @@ int main() {
 	for (int i = 0; i < 26; i++) {
 		cout << endl << (char) (65 + i) << endl;
 		int wordCount = 0;
-		for (string word : wordVectors[i]) {
+		for (string word : wordSets[i]) {
 			++wordCount;
-			finalVector.push_back(word);
+			finalSet.insert(word);
 			if (wordCount % 100 == 0) {
 				cout << ".";
 			}
 		}
 	}
 
-	cout << endl << "Number of simple words = " << finalVector.size() << endl;
-
-	//Sorting fase
-	cout << "Sorting words ..." << endl;
-	sort(finalVector.begin(), finalVector.end());
-
-	//Duplicate removing fase
-	cout << "Removing duplicate words ..." << endl;
-	set<string> s;
-	for (string &word : finalVector) {
-		s.insert(word);
-	}
-	finalVector.assign(s.begin(), s.end());
-
-	cout << "Number of non-duplicate simple words = " << finalVector.size() << endl;
+	cout << endl << "Number of non-duplicate simple words = " << finalSet.size() << endl;
 
 	//Saving fase
 	cout << "Saving words into file " << outFileName << " ..." << endl;
 	if (fileOutput.is_open()) {
-		for (string word : finalVector) {
+		for (string word : finalSet) {
 			fileOutput << word << endl;
 		}
 

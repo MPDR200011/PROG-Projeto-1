@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="playwords.cpp" />
     <ClCompile Include="playWordsUtils.cpp" />
     <ClCompile Include="randomNLetters.cpp" />
     <ClCompile Include="searchWildCard.cpp" />

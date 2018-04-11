@@ -30,6 +30,9 @@
     <ClCompile Include="searchWildCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="playwords.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="playWordsUtils.h">

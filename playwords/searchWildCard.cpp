@@ -24,5 +24,9 @@ void searchWildcard(ifstream &wordListFile) {
 			cout << temp << endl;
 		}
 	}
+
+	cout << endl << "Done!!!" << endl;
+
+	pw::endGame();
 	
 }

@@ -211,7 +211,7 @@ void func3(vector<string> wordList) {			// visualizar palavras com um set de let
 	for (unsigned i = 0; i < wordList.size(); i++) {
 		pertence = true;
 		for (unsigned j = 0; j < letras.length(); j++) {
-			if (sizeof(wordList[i]) > letras.length()) {
+			if (wordList[i].length() > letras.length()) {
 				pertence = false;
 				break;
 			}

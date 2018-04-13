@@ -22,7 +22,9 @@
     <Text Include="control.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="playwords.cpp" />
     <ClCompile Include="playWordsUtils.cpp" />
     <ClCompile Include="randomNLetters.cpp" />

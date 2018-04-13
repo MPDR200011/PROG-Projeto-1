@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+int playwords();
+
 //Exercicio 4
 void randomNLetters(std::ifstream &wordListFile);
 

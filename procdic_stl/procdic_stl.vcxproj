@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="procdic_stl.cpp" />
+    <ClCompile Include="main_stl.cpp" />
     <ClCompile Include="wordUtils.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="procdic.cpp">
+    <ClCompile Include="main.cpp">
       <SubType>
       </SubType>
     </ClCompile>

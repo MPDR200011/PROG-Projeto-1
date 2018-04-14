@@ -30,6 +30,33 @@ namespace pw {
 		} while (!validInput);
 	}
 
+	template <class T>
+	bool takeInputEOF(T &var) {
+		//Faz o mesmo que takeInput mas
+		//retorna true se for laventada 
+		//a flag EOF
+		bool validInput = false;
+		do {
+			validInput = false;
+			cin >> var;
+			if (cin.fail()) {
+				if (cin.eof()) {
+					cin.clear();
+					return true;
+				}
+				validInput = false;
+				cout << "Invalid input, try again." << endl;
+				cin.clear();
+				cin.ignore(10000, '\n');
+			} else {
+				validInput = true;
+				cin.ignore(1000, '\n');
+			}
+		} while (!validInput);
+
+		return false;
+	}
+
 	bool isWordPartOfSet(std::string word, std::vector<char> set);
 
 	bool wildcardMatch(const char *str, const char *strWild);

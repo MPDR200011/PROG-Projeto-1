@@ -54,20 +54,24 @@ int main() {
 		cout << "   ||         Wildcard word search          ||   " << endl;
 		cout << "   |\\\\_____________________________________//|   " << endl;
 
-		cout << endl << "Choose game: ";
+		cout << endl << "Choose game (CTRL+Z to exit): ";
 
 		//Escolher jogo
 		size_t choice;
 		bool validChoice = false;
 		do {
 
-			pw::takeInput(choice);
+			if (pw::takeInputEOF(choice)) {
+				return 0;
+			}
+
 			if (choice < 1 || choice > 5) {
 				validChoice = false;
 				cout << "No such game, try again." << endl;
 			} else {
 				validChoice = true;
 			}
+
 		} while (!validChoice);
 
 		system("cls");

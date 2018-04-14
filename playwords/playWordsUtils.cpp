@@ -78,6 +78,25 @@ bool pw::wildcardMatch(const char *str, const char *strWild) {
 	return !*str && !*strWild;
 }
 
+bool pw::isWordMember(string word, vector<string> list) {
+
+	for (string s: list) {
+		if (!word.compare(s)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool pw::isCharMember(char ch, string word) {
+	for (char c : word) {
+		if (ch == c) {
+			return true;
+		}
+	}
+	return false;
+}
+
 string pw::trim(string s) {
 	//remove o espaco branco no inicio e no fim da string
 	const auto sBegin = s.find_first_not_of(" \t\n\v\f\r");
@@ -100,7 +119,17 @@ string pw::makeUpper(string s) {
 	return temp;
 }
 
+string pw::scramble(string word) {
+	string scramb = word;
+	for (unsigned i = 0; i < scramb.length(); i++) {
+		unsigned j = rand() % scramb.length();
+		swap(scramb[i], scramb[j]);
+	}
+	return scramb;
+}
+
 void pw::endGame() {
 	cout << endl << "Press Enter to finnish." << endl;
 	getchar();
 }
+

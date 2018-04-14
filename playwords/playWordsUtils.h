@@ -34,9 +34,15 @@ namespace pw {
 
 	bool wildcardMatch(const char *str, const char *strWild);
 
+	bool isWordMember(std::string word, std::vector<std::string> list);
+
+	bool isCharMember(char ch, std::string word);
+
 	std::string trim(std::string s);
 
 	std::string makeUpper(std::string s);
+
+	std::string scramble(std::string word);
 
 	void endGame();
 

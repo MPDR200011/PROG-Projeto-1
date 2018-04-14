@@ -30,7 +30,13 @@
     <ClCompile Include="searchWildCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="playwords.cpp">
+    <ClCompile Include="checkWordinList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="guessScrambledWord.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="searchLetterSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

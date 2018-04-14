@@ -129,18 +129,17 @@ void randomNLetters(ifstream &wordListFile) {
 	while (getline(wordListFile, temp)) {
 		if (!temp.compare(answer)) {
 			//Encontrou
-			cout << "Word is in word list!" << endl;
 			founWord = true;
 			break;
 		}
 	}
 
 	//Nao encontrou
-	if (!founWord) {
+	if (founWord) {
+		cout << "Word is in word list!" << endl;
+	} else {
 		cout << "Word is not in world list!" << endl;
 	}
-
-	wordListFile.close();
 
 	pw::endGame();
 

@@ -54,7 +54,7 @@ int main() {
 		cout << "   ||         Wildcard word search          ||   " << endl;
 		cout << "   |\\\\_____________________________________//|   " << endl;
 
-		cout << endl << "Choose game: " << endl;
+		cout << endl << "Choose game: ";
 
 		//Escolher jogo
 		size_t choice;
@@ -69,6 +69,8 @@ int main() {
 				validChoice = true;
 			}
 		} while (!validChoice);
+
+		system("cls");
 
 		switch (choice) {
 			case (1):
@@ -112,6 +114,9 @@ int main() {
 			}
 
 		} while (!validChoice);
+
+		system("cls");
+
 	} while (anotherGame);
 
 	if (file.is_open()) {

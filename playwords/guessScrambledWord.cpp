@@ -8,7 +8,8 @@
 
 using namespace std;
 
-void guessScrambledWord(ifstream &file) {			// Adivinhar uma palavra baralhada
+// Adivinhar uma palavra baralhada
+void guessScrambledWord(ifstream &file) {			
 
 	vector<string> wordList;
 	string temp;
@@ -18,30 +19,36 @@ void guessScrambledWord(ifstream &file) {			// Adivinhar uma palavra baralhada
 
 	srand(time(NULL));
 	int wordIndex = rand() % wordList.size();
-	string word = wordList[wordIndex];
-	string scrWord = pw::scramble(word);
-	string guessWord;
+	string wordToGuess = wordList[wordIndex];
+	string scrambledWord = pw::scramble(wordToGuess);
 
-	cout << scrWord << endl << endl;
+	cout << scrambledWord << endl << endl;
+
+	string guessWord; 
+	int tries = 3;
+	bool lost = false;
 
 	cout << "Make a guess: ";
-
-	for (int v = 3; v >= 0; v--) {
-
-		if (v == 0) {
-			cout << endl << "You lost, the answer was " << word << "!" << endl;
-			break;
-		}
-
+	while (!lost) {
 		pw::readString(guessWord);
 		guessWord = pw::trim(guessWord);
 		guessWord = pw::makeUpper(guessWord);
-		if (word == guessWord) {
-			cout << endl << "You won! Congratulations!" << endl;
+		if (!guessWord.compare(wordToGuess)) {
 			break;
 		} else {
-			cout << "Wrong guess, try again: ";
+			if (!--tries) {
+				lost = true;
+			} else {
+				cout << "Wrong guess, try again: ";
+			}
 		}
+	}
+
+	if (!lost) {
+		cout << endl << "You won! Congratulations!" << endl;
+	} else {
+		cout << endl << "You lost, better luck next time." << endl;
+		cout << "The answer was " << wordToGuess << endl;
 	}
 
 	pw::endGame();

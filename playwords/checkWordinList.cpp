@@ -7,7 +7,8 @@
 
 using namespace std;
 
-void checkWordinList(ifstream &file) {			// Verificar se palavra pertence ao dicionario
+// Verificar se palavra pertence ao dicionario
+void checkWordinList(ifstream &file) {			
 	vector<string> wordList;
 	string temp;
 	while (getline(file, temp)) {
